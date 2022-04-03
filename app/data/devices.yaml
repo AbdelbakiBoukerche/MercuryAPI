@@ -1,0 +1,25 @@
+- id: 1
+  ip_address: 1.1.1.1
+  name: IOSv-Mercury-Router1
+  os: ios
+  transport: napalm
+  hostname: IOSv-Mercury-R1
+  username: admin
+  password: cisco123
+  ssh_port: 21
+  vendor: Cisco Systems
+  sla_availability: 95
+  sla_response_time: 15
+
+- id: 2
+  ip_address: 1.1.1.2
+  name: IOSv-Mercury-Router2
+  os: ios
+  transport: napalm
+  hostname: IOSv-Mercury-R2
+  username: admin 
+  password: cisco123
+  ssh_port: 21
+  vendor: Cisco Systems
+  sla_availability: 95
+  sla_response_time: 15

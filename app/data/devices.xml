@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<0>
+    <id>1</id>
+    <ip_address>1.1.1.1</ip_address>
+    <name>IOSv</name>
+    <os>ios</os>
+    <transport>napalm</transport>
+    <hostname>IOSv-Mercury-R1</hostname>
+    <username>admin</username>
+    <password>cisco123</password>
+    <ssh_port>21</ssh_port>
+    <vendor>Cisco Systems</vendor>
+    <sla_availability>95</sla_availability>
+    <sla_response_time>15</sla_response_time>
+</0>
+<1>
+    <id>2</id>
+    <ip_address>1.1.1.2</ip_address>
+    <name>IOSv</name>
+    <os>ios</os>
+    <transport>napalm</transport>
+    <hostname>IOSv-Mercury-R2</hostname>
+    <username>admin</username>
+    <password>cisco123</password>
+    <ssh_port>21</ssh_port>
+    <vendor>Cisco Systems</vendor>
+    <sla_availability>95</sla_availability>
+    <sla_response_time>15</sla_response_time>
+</1>
