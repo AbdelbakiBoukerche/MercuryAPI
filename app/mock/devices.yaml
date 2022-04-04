@@ -6,20 +6,22 @@
   hostname: IOSv-Mercury-R1
   username: admin
   password: cisco123
+  enable_secret: cisco123
   ssh_port: 21
   vendor: Cisco Systems
   sla_availability: 95
   sla_response_time: 15
 
 - id: 2
-  ip_address: 192.168.153.134
+  ip_address: 192.168.122.118
   name: IOL-Mercury-Router2
   os: ios
   transport: napalm
   hostname: IOL-MERCURY-R2
-  username: admin 
+  username: admin
   password: cisco123
-  ssh_port: 21
+  enable_secret: cisco123
+  ssh_port: 22
   vendor: Cisco Systems
   sla_availability: 95
   sla_response_time: 15
@@ -32,7 +34,8 @@
   hostname: CSR1000v-SDWAN-Mercury-R3
   username: admin 
   password: cisco123
-  ssh_port: 21
+  enable_secret: cisco123
+  ssh_port: 22
   vendor: Cisco Systems
   sla_availability: 95
   sla_response_time: 15

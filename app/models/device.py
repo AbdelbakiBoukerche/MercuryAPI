@@ -42,6 +42,7 @@ class Device(Base):
     hostname = Column(Text)
     username = Column(Text)
     password = Column(Text)
+    enable_secret = Column(Text)
 
     # Relationships
     device_statuses = relationship("DeviceStatus", back_populates="device")

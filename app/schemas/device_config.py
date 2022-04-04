@@ -21,7 +21,6 @@ class DeviceConfigCreate(DeviceConfigBase):
 
 
 class DeviceConfigUpdate(DeviceConfigBase):
-    id: int
     timestamp: date
     config: str
 

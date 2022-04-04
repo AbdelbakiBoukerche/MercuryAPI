@@ -10,7 +10,8 @@ from app.schemas.device_config import DeviceConfigCreate, DeviceConfigUpdate
 
 class CRUDDeviceConfig(CRUDBase[DeviceConfig, DeviceConfigCreate, DeviceConfigUpdate]):
     def create(self, db: Session, *, obj_in: DeviceConfigCreate) -> DeviceConfig:
-        return super().create(db, obj_in=obj_in)
+        db_obj = DeviceConfig(**obj_in.dict())
+        return super().create(db, obj_in=db_obj)
 
     def update(
         self,
@@ -19,7 +20,11 @@ class CRUDDeviceConfig(CRUDBase[DeviceConfig, DeviceConfigCreate, DeviceConfigUp
         db_obj: DeviceConfig,
         obj_in: Union[DeviceConfigUpdate, Dict[str, Any]]
     ) -> DeviceConfig:
-        return super().update(db, db_obj=db_obj, obj_in=obj_in)
+        if isinstance(obj_in, dict):
+            update_data = obj_in
+        else:
+            update_data = obj_in.dict(exclude_unset=True)
+        return super().update(db, db_obj=db_obj, obj_in=update_data)
 
 
 crud_device_config = CRUDDeviceConfig(DeviceConfig)

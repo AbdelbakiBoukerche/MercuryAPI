@@ -8,7 +8,7 @@
     <hostname>IOSv-Mercury-R1</hostname>
     <username>admin</username>
     <password>cisco123</password>
-    <ssh_port>21</ssh_port>
+    <ssh_port>22</ssh_port>
     <vendor>Cisco Systems</vendor>
     <sla_availability>95</sla_availability>
     <sla_response_time>15</sla_response_time>
@@ -22,7 +22,7 @@
     <hostname>IOSv-Mercury-R2</hostname>
     <username>admin</username>
     <password>cisco123</password>
-    <ssh_port>21</ssh_port>
+    <ssh_port>22/ssh_port>
     <vendor>Cisco Systems</vendor>
     <sla_availability>95</sla_availability>
     <sla_response_time>15</sla_response_time>

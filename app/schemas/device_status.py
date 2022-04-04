@@ -27,7 +27,6 @@ class DeviceStatusCreate(DeviceStatusBase):
 
 
 class DeviceStatusUpdate(DeviceStatusBase):
-    id: int
     timestamp: datetime
     availability: bool
     response_time: int

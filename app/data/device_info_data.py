@@ -3,14 +3,16 @@ from enum import Enum
 import napalm
 
 from app.core.logger import logger
+from app.crud.crud_device import crud_device
+from app.db.session import SessionLocal
 from app.models.device import Device
 
 
 class EOperatingSystems(str, Enum):
-    IOS = 'ios'
-    IOSXE = 'iosxe'
+    IOS = "ios"
+    IOSXE = "iosxe"
     NXOS = "nxos"
-    NXOS_SSH = 'nxos-ssh'
+    NXOS_SSH = "nxos-ssh"
 
 
 def get_device_info(device: Device, requested_info, get_live_info=False):
@@ -24,11 +26,14 @@ def get_device_info(device: Device, requested_info, get_live_info=False):
 
 def get_device_info_napalm(device: Device, requested_info, get_live_info=False):
 
+    # TODO: Use dependency injection for SessoinLocal()
+    db = SessionLocal()
+
     # Try to get the info from the DB first
-    # if requested_info == "facts" and not get_live_info:
-    #     result, facts = get_facts(device.id)
-    #     if result == "success":
-    #         return "success", {"facts": facts}
+    if requested_info == "facts" and not get_live_info:
+        result, device_info = "success", crud_device.get(db, id=device.id)
+        if result == "success":
+            return "success", {"device_info": device_info}
 
     napalm_device = get_napalm_device(device)
 
@@ -37,7 +42,7 @@ def get_device_info_napalm(device: Device, requested_info, get_live_info=False):
 
         if requested_info == "facts":
             facts = napalm_device.get_facts()
-            # set_facts(device, {"facts": facts})
+            crud_device.update(db, db_obj=device, obj_in=facts)
             return "success", {"facts": facts}
         elif requested_info == "environment":
             return "success", {"environment": napalm_device.get_environment()}
@@ -56,7 +61,9 @@ def get_device_info_napalm(device: Device, requested_info, get_live_info=False):
             return "failure", "Unknown requested info"
 
     except BaseException as e:
-        logger.error(f"Exception when getting device info for {device.name}! Error: {repr(e)}")
+        logger.error(
+            f"Exception when getting device info for {device.name}! Error: {repr(e)}"
+        )
         return "failure", repr(e)
 
 
@@ -71,16 +78,23 @@ def get_napalm_device(device: Device):
     else:
         return "failed", "Unsupported OS"
 
-    if device.os in {EOperatingSystems.IOS, EOperatingSystems.IOSXE, EOperatingSystems.NXOS_SSH}:
+    if device.os in {
+        EOperatingSystems.IOS,
+        EOperatingSystems.IOSXE,
+        EOperatingSystems.NXOS_SSH,
+    }:
         napalm_device = driver(
-            hostname=device.hostname,
+            hostname=device.ip_address,
             username=device.username,
             password=device.password,
-            optional_args={"port": device.ssh_port},
+            optional_args={
+                "port": device.ssh_port,
+                "secret": device.enable_secret,
+            },
         )
     else:
         napalm_device = driver(
-            hostname=device.hostname,
+            hostname=device.ip_address,
             username=device.username,
             password=device.password,
         )

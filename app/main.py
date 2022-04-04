@@ -45,11 +45,11 @@ from app.data.device_info_data import get_device_info
 from app.models.device import Device
 
 device = Device(**devices[1])
-data = get_device_info(device=device, requested_info="facts")
+data = get_device_info(device=device, requested_info="facts", get_live_info=True)
 print(data)
 
 
-def shutdown(): # noqa F811
+def shutdown():  # noqa F811
     logger.info("MerucryAPI: Starting shutdown sequence!!!")
 
     ThreadService.init_terminate_all_threads()
