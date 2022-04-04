@@ -12,11 +12,11 @@
   sla_response_time: 15
 
 - id: 2
-  ip_address: 1.1.1.2
-  name: IOSv-Mercury-Router2
+  ip_address: 192.168.153.134
+  name: IOL-Mercury-Router2
   os: ios
   transport: napalm
-  hostname: IOSv-Mercury-R2
+  hostname: IOL-MERCURY-R2
   username: admin 
   password: cisco123
   ssh_port: 21

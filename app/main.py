@@ -32,13 +32,21 @@ init_db(db=db)
 from app.utils.import_devices import import_devices, EImportDevicesFileType
 
 
-import_devices(filename="devices.yaml", filetype=EImportDevicesFileType.YAML)
+devices = import_devices(filename="devices.yaml", filetype=EImportDevicesFileType.YAML)
 
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
 
 ThreadService.start_device_threads(device_monitor_interval=60)
+
+
+from app.data.device_info_data import get_device_info
+from app.models.device import Device
+
+device = Device(**devices[1])
+data = get_device_info(device=device, requested_info="facts")
+print(data)
 
 
 def shutdown(): # noqa F811
