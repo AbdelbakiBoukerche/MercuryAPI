@@ -19,6 +19,15 @@ def set_device(devices):
     ids = set()
     names = set()
 
+    # Get Devices in database
+    devices_in_db = crud_device.get_all(db)
+
+    # Register Existing devices
+    for device_in_db in devices_in_db:
+        ids.add(device_in_db.id)
+        names.add(device_in_db.name)
+
+    # Regiseter new devices
     for device in devices:
         if device["id"] in ids:
             logger.error(

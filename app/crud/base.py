@@ -48,6 +48,17 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         """
         return db.query(self.model).offset(skip).limit(limit).all()
 
+    def get_all(self, db: Session) -> List[ModelType]:
+        """Get All Objects in database
+
+        Args:
+            `db (Session)`: sqlalchemy.orm.Session Instance
+
+        Returns:
+            `List[ModelType]`: List of Model Instance
+        """
+        return db.query(self.model).all()
+
     def create(self, db: Session, *, obj_in: CreateSchemaType) -> ModelType:
         """Creates item in database from `obj_in`
 
