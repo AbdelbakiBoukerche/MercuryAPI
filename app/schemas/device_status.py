@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class DeviceStatusBase(BaseModel):
-    id: Optional[int] = None
+    # id: Optional[int] = None
 
     timestamp: Optional[datetime] = None
     availability: Optional[bool] = None
@@ -27,6 +27,7 @@ class DeviceStatusCreate(DeviceStatusBase):
 
 
 class DeviceStatusUpdate(DeviceStatusBase):
+    id: int
     timestamp: datetime
     availability: bool
     response_time: int
@@ -36,16 +37,8 @@ class DeviceStatusUpdate(DeviceStatusBase):
     device_id: int
 
 
-class DeviceStatusInDBBase(DeviceStatusBase):
-    id: Optional[int] = None
+class DeviceStatus(DeviceStatusBase):
+    id: int
 
     class Config:
         orm_mode = True
-
-
-class DeviceStatus(DeviceStatusInDBBase):
-    pass
-
-
-class DeviceStatusInDB(DeviceStatusInDBBase):
-    pass

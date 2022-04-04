@@ -10,9 +10,16 @@ from app.api import deps
 router = APIRouter()
 
 
+@router("/all", response_model=List[schemas.Device])
+def get_all_devices(*, db: Session = Depends(deps.get_db)) -> Any:
+    devices = crud.crud_device.get_all(db)
+
+    return devices
+
+
 @router.get("/", response_model=List[schemas.Device])
-def get_devices(*, db: Session = Depends(deps.get_db)) -> Any:
-    devices = crud.crud_device.get_multi(db, skip=0, limit=100)
+def get_devices(*, db: Session = Depends(deps.get_db), skip: int = 0, limit: int = 100) -> Any:
+    devices = crud.crud_device.get_multi(db, skip=skip, limit=limit)
 
     return devices
 
