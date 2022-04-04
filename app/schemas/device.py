@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Optional
 
 from pydantic import BaseModel
@@ -21,7 +22,7 @@ class DeviceBase(BaseModel):
     sla_availability: Optional[int] = None
     sla_response_time: Optional[int] = None
 
-    last_heard: Optional[str] = None
+    last_heard: Optional[datetime] = None
 
     cpu: Optional[int] = None
     memory: Optional[int] = None
@@ -73,7 +74,7 @@ class DeviceUpdate(DeviceBase):
     sla_availability: Optional[int] = None
     sla_response_time: Optional[int] = None
 
-    last_heard: Optional[str] = None
+    last_heard: Optional[datetime] = None
 
     cpu: Optional[int] = None
     memory: Optional[int] = None

@@ -1,10 +1,12 @@
-from sqlalchemy import Boolean, Column, Integer, Text
-
+from sqlalchemy import Boolean, Column, DateTime, Integer, Text
+from sqlalchemy.orm import relationship
 
 from app.db.base_class import Base
 
 
 class Device(Base):
+
+    __tablename__ = "device"
 
     id = Column(Integer, primary_key=True)
     name = Column(Text, unique=True, nullable=False)
@@ -23,7 +25,7 @@ class Device(Base):
     sla_availability = Column(Integer, default=0)
     sla_response_time = Column(Integer, default=999)
 
-    last_heard = Column(Text)
+    last_heard = Column(DateTime)
 
     cpu = Column(Integer)
     memory = Column(Integer)
@@ -40,6 +42,9 @@ class Device(Base):
     hostname = Column(Text)
     username = Column(Text)
     password = Column(Text)
+
+    # Relationships
+    device_statuses = relationship("DeviceStatus", back_populates="device")
 
     def __repr__(self) -> str:
         return f"Device: {self.name} - {self.hostname}"
