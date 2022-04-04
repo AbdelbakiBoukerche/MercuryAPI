@@ -45,6 +45,7 @@ class Device(Base):
 
     # Relationships
     device_statuses = relationship("DeviceStatus", back_populates="device")
+    device_configs = relationship("DeviceConfig", back_populates="device")
 
     def __repr__(self) -> str:
         return f"Device: {self.name} - {self.hostname}"
