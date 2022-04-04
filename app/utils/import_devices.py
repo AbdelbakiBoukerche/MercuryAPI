@@ -30,13 +30,13 @@ def set_device(devices):
     # Regiseter new devices
     for device in devices:
         if device["id"] in ids:
-            logger.error(
-                f"Error importing devices from devices.yaml. Duplicate device id: {device['id']}"
+            logger.warn(
+                f"Error importing devices from devices.yaml! Duplicate device id: {device['id']}"
             )
             continue
         if device["name"] in ids:
-            logger.error(
-                f"Error importing devices from devices.yaml. Duplicate name id: {device['name']}"
+            logger.warn(
+                f"Error importing devices from devices.yaml! Duplicate device name: {device['name']}"
             )
             continue
 
@@ -54,7 +54,7 @@ def import_devices(
     if not filename or not filetype:
         return None
 
-    with open(f"app/data/{filename}", "r") as imported_file:
+    with open(f"app/mock/{filename}", "r") as imported_file:
 
         if filetype == EImportDevicesFileType.JSON:
             devices = json.loads(imported_file.read())

@@ -1,4 +1,4 @@
-from typing import Any, Dict, Union
+from typing import Any, Dict, List, Union
 
 from sqlalchemy.orm import Session
 
@@ -19,6 +19,10 @@ class CRUDDevice(CRUDBase[Device, DeviceCreate, DeviceUpdate]):
         obj_in: Union[DeviceUpdate, Dict[str, Any]]
     ) -> Device:
         return super().update(db, db_obj=db_obj, obj_in=obj_in)
+
+    def get_devices_ids(self, db: Session) -> List[int]:
+        devices_ids = db.query(self.model.id).all()
+        return [id for id, in devices_ids]
 
 
 crud_device = CRUDDevice(Device)

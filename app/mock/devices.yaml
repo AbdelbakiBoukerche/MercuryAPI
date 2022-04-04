@@ -23,3 +23,16 @@
   vendor: Cisco Systems
   sla_availability: 95
   sla_response_time: 15
+
+- id: 3
+  ip_address: 1.1.1.3
+  name: CSR1000v-SDWAN-Mercury-Router1
+  os: ios
+  transport: HTTP-REST
+  hostname: CSR1000v-SDWAN-Mercury-R3
+  username: admin 
+  password: cisco123
+  ssh_port: 21
+  vendor: Cisco Systems
+  sla_availability: 95
+  sla_response_time: 15

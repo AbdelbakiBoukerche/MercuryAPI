@@ -1,5 +1,4 @@
 from datetime import date, datetime
-from turtle import st
 from typing import Optional
 
 from pydantic import BaseModel
@@ -16,7 +15,7 @@ class DeviceConfigBase(BaseModel):
 
 class DeviceConfigCreate(DeviceConfigBase):
     timestamp: date
-    config: st
+    config: str
 
     device_id: int
 
@@ -24,7 +23,7 @@ class DeviceConfigCreate(DeviceConfigBase):
 class DeviceConfigUpdate(DeviceConfigBase):
     id: int
     timestamp: date
-    config: st
+    config: str
 
     device_id: int
 
