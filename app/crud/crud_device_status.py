@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from typing import Any, Dict, Union
 
 from sqlalchemy.orm import Session
@@ -9,8 +11,19 @@ from app.schemas.device_status import DeviceStatusCreate, DeviceStatusUpdate
 
 class CRUDDeviceStatus(CRUDBase[DeviceStatus, DeviceStatusCreate, DeviceStatusUpdate]):
     def create(self, db: Session, *, obj_in: DeviceStatusCreate) -> DeviceStatus:
-        db_obj = DeviceStatus(**obj_in.dict())
-        return super().create(db, obj_in=db_obj)
+        db_obj = DeviceStatus(
+            timestamp=str(datetime.now())[:-3],
+            availability=obj_in.availability,
+            response_time=obj_in.response_time,
+            cpu=obj_in.cpu,
+            memory=obj_in.memory,
+            device_id=obj_in.device_id,
+        )
+
+        db.add(db_obj)
+        db.commit()
+        db.refresh(db_obj)
+        return db_obj
 
     def update(
         self,

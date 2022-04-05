@@ -4,8 +4,8 @@ import yaml
 
 from app.core.logger import logger
 from app.crud.crud_device import crud_device
-from app.db.session import SessionLocal
 from app.schemas.device import DeviceCreate
+from app.utils import get_db
 
 
 class EImportDevicesFileType(Enum):
@@ -14,7 +14,7 @@ class EImportDevicesFileType(Enum):
 
 
 def set_device(devices):
-    db = SessionLocal()
+    db = get_db.get_db()
 
     ids = set()
     names = set()

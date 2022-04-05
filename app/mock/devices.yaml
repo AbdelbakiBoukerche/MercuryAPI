@@ -1,23 +1,10 @@
+# Switches
 - id: 1
-  ip_address: 1.1.1.1
-  name: IOSv-Mercury-Router1
+  ip_address: 192.168.153.192
+  name: Mercury-IOSvL2-SW1
   os: ios
   transport: napalm
-  hostname: IOSv-Mercury-R1
-  username: admin
-  password: cisco123
-  enable_secret: cisco123
-  ssh_port: 21
-  vendor: Cisco Systems
-  sla_availability: 95
-  sla_response_time: 15
-
-- id: 2
-  ip_address: 192.168.122.118
-  name: IOL-Mercury-Router2
-  os: ios
-  transport: napalm
-  hostname: IOL-MERCURY-R2
+  hostname: MR-SW1
   username: admin
   password: cisco123
   enable_secret: cisco123
@@ -26,13 +13,84 @@
   sla_availability: 95
   sla_response_time: 15
 
-- id: 3
-  ip_address: 1.1.1.3
-  name: CSR1000v-SDWAN-Mercury-Router1
+- id: 2
+  ip_address: 192.168.153.193
+  name: Mercury-IOSvL2-SW2
   os: ios
-  transport: HTTP-REST
-  hostname: CSR1000v-SDWAN-Mercury-R3
-  username: admin 
+  transport: napalm
+  hostname: MR-SW2
+  username: admin
+  password: cisco123
+  enable_secret: cisco123
+  ssh_port: 22
+  vendor: Cisco Systems
+  sla_availability: 95
+  sla_response_time: 15
+
+# Routers
+- id: 3
+  ip_address: 192.168.153.187
+  name: Mercury-IOSv-R1
+  os: ios
+  transport: napalm
+  hostname: MR-R1
+  username: admin
+  password: cisco123
+  enable_secret: cisco123
+  ssh_port: 22
+  vendor: Cisco Systems
+  sla_availability: 95
+  sla_response_time: 15
+
+- id: 4
+  ip_address: 192.168.153.188
+  name: Mercury-IOSv-R2
+  os: ios
+  transport: napalm
+  hostname: MR-R2
+  username: admin
+  password: cisco123
+  enable_secret: cisco123
+  ssh_port: 22
+  vendor: Cisco Systems
+  sla_availability: 95
+  sla_response_time: 15
+
+- id: 5
+  ip_address: 192.168.153.189
+  name: Mercury-IOSv-R3
+  os: ios
+  transport: napalm
+  hostname: MR-R3
+  username: admin
+  password: cisco123
+  enable_secret: cisco123
+  ssh_port: 22
+  vendor: Cisco Systems
+  sla_availability: 95
+  sla_response_time: 15
+
+- id: 6
+  ip_address: 192.168.153.190
+  name: Mercury-IOSv-R4
+  os: ios
+  transport: napalm
+  hostname: MR-R4
+  username: admin
+  password: cisco123
+  enable_secret: cisco123
+  ssh_port: 22
+  vendor: Cisco Systems
+  sla_availability: 95
+  sla_response_time: 15
+
+- id: 7
+  ip_address: 192.168.153.191
+  name: Mercury-IOSv-R5
+  os: ios
+  transport: napalm
+  hostname: MR-R5
+  username: admin
   password: cisco123
   enable_secret: cisco123
   ssh_port: 22
