@@ -59,6 +59,18 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         """
         return db.query(self.model).all()
 
+    def get_all_by_device_id(self, db: Session, device_id: int) -> List[ModelType]:
+        """Get All Statuses for a single device from database
+
+        Args:
+            `db (Session)`: sqlalchemy.orm.Session Instance
+            `device_id`: Device ID to fetch statuses for
+
+        Returns:
+            `List[ModelType]`: List of Model Instance
+        """
+        return db.query(self.model).filter(self.model.device_id == device_id).all()
+
     def create(self, db: Session, *, obj_in: CreateSchemaType) -> ModelType:
         """Creates item in database from `obj_in`
 

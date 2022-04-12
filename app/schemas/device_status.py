@@ -3,8 +3,6 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from app.schemas.device import DeviceBase
-
 
 class DeviceStatusBase(BaseModel):
     # id: Optional[int] = None
@@ -17,17 +15,17 @@ class DeviceStatusBase(BaseModel):
     device_id: Optional[int] = None
 
 
-class DeviceStatusCreate(DeviceBase):
+class DeviceStatusCreate(DeviceStatusBase):
     availability: bool
     device_id: int
 
 
-class DeviceStatusUpdate(DeviceBase):
+class DeviceStatusUpdate(DeviceStatusBase):
     availability: bool
     device_id: int
 
 
-class DeviceStatus(DeviceBase):
+class DeviceStatus(DeviceStatusBase):
     id: int
 
     class Config:

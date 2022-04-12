@@ -16,13 +16,15 @@ app = FastAPI(
 
 # Set all CORS enabled origins
 if settings.BACKEND_CORS_ORIGINS:
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=[str(origin) for origin in settings.BACKEND_CORS_ORIGINS],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
+    pass
+app.add_middleware(
+    CORSMiddleware,
+    # allow_origins=[str(origin) for origin in settings.BACKEND_CORS_ORIGINS],
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # Init Database
@@ -39,9 +41,9 @@ import_devices(filename="devices.yaml", filetype=EImportDevicesFileType.YAML)
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
 
-ThreadService.start_device_threads(
-    device_monitor_interval=settings.MONITORING_DEVICE_INTERVAL
-)
+# ThreadService.start_device_threads(
+#     device_monitor_interval=settings.MONITORING_DEVICE_INTERVAL
+# )
 
 
 def shutdown():  # noqa F811
