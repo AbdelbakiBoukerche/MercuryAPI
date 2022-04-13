@@ -46,6 +46,10 @@ app.include_router(api_router, prefix=settings.API_V1_STR)
 # )
 
 
+if settings.DB_CLEANUP_INTERVAL:
+    print("clean database is ON")
+
+
 def shutdown():  # noqa F811
     logger.info("MerucryAPI: Starting shutdown sequence!!!")
 

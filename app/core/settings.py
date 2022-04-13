@@ -32,6 +32,8 @@ class Settings(BaseSettings):
     # Monitoring Intervals
     MONITORING_DEVICE_INTERVAL: int = 60
 
+    DB_CLEANUP_INTERVAL: int = None
+
     class Config:
         case_sensitive = True
 
