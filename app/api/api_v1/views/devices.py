@@ -45,7 +45,7 @@ def get_device(*, db: Session = Depends(get_db), id: int) -> Any:
     return device
 
 
-@router.get("/{id}/status", response_model=List[schemas.DeviceStatus])
+@router.get("/{id}/statuses", response_model=List[schemas.DeviceStatus])
 def get_device_statuses(
     *, db: Session = Depends(get_db), id: int, skip: int = 0, limit: int = 100
 ) -> Any:

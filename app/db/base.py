@@ -5,3 +5,6 @@ from app.db.base_class import Base
 from app.models.device import Device
 from app.models.device_status import DeviceStatus
 from app.models.device_config import DeviceConfig
+from app.models.user import User
+from app.models.role import Role
+from app.models.user_role import UserRole
